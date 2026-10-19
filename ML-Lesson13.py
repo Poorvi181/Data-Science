@@ -51,5 +51,38 @@ model = DecisionTreeClassifier(random_state=42)
 model.fit(X_train, Y_train)
 print("\nModel training completed!")
 
+predictions = model.predict(X_test)
+
+print("\nActual values:")
+print(Y_test.head(10).values)
+
+print("\nPredicted values:")
+print(predictions[:10])
+
+accuracy = accuracy_score(Y_test, predictions)
+
+print("\nModel Accuracy:")
+print(accuracy)
+
+print("\nAccuracy Percentage:")
+print(round(accuracy * 100, 2), "%")
+
+new_passenger = pd.DataFrame(
+    [[1, 1, 25, 100, 1]],
+    columns = ["Pclass", "Sex", "Age", "Fare", "Embarked"]
+)
+
+new_prediction =model.predict(new_passenger)
+
+print("\n======================================")
+print("NEW PASSENGER PREDICTION")
+print("\n======================================")
+
+if new_prediction[0] == 1:
+    print("The passenger is predicted to SURVIVE.")
+else:
+    print("The passenger is predicted to NOT SURVIVE.")
+
+
         
 
