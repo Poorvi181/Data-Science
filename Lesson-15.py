@@ -35,11 +35,10 @@ data.columns = (
 
 )
 
-data["State"].fillna(value="", inplace=True)
+data["State"] = data["State"].fillna("")
 
 top10_confirmed = pd.DataFrame(
-    data.groupby("Country")
-    ["Confirmed"].sum().nlargest(10).sort_values(ascending=False)
+    data.groupby("Country")["Confirmed"].sum().nlargest(10).sort_values(ascending=False)
 )
 
 fig1 = px.scatter(
@@ -51,11 +50,10 @@ fig1 = px.scatter(
     color="Confirmed",
     title="Top 10 Countries By Confirmed Cases",
 )
-fig1.write_html("Fig1.html", auto_open=True)
+fig1.write_html("Figg1.html", auto_open=True)
 
 top10_deaths = pd.DataFrame(
-    data.groupby("Country")
-["Deaths"].sum().nlargest(10).sort_values(ascending=False)
+    data.groupby("Country")["Deaths"].sum().nlargest(10).sort_values(ascending=False)
 )
 fig2 = px.bar(
     top10_deaths,
@@ -70,8 +68,7 @@ fig2 = px.bar(
 fig2.write_html("Fig2.html", auto_open=True)
 
 top10_recovered = pd.DataFrame(
-    data.groupby("Country")
-    ["Recovered"].sum().nlargest(10).sort_values(ascending=False)
+    data.groupby("Country")["Recovered"].sum().nlargest(10).sort_values(ascending=False)
 )
 fig3 = px.bar(
     top10_recovered,
@@ -79,10 +76,10 @@ fig3 = px.bar(
     y="Recovered",
     height=600,
     color="Recovered",
-    title = "Top 1- Recovered Cases Countries",
+    title = "Top 10 Recovered Cases Countries",
     color_continuous_scale=px.colors.sequential.Viridis,
 )
-fig3.write_html("Fif3.html", auto_open=True)
+fig3.write_html("Fig3.html", auto_open=True)
 
 topstates_us = data["Country"] == "US"
 topstates_us = data[topstates_us].nlargest(5, "Confirmed")
@@ -96,9 +93,9 @@ topstates_india = data[topstates_india].nlargest(5, "Confirmed")
 topstates_russia = data["Country"] == "Russia"
 topstates_russia = data[topstates_russia].nlargest(5, "Confirmed")
 
-fig4 = go.figure(
+fig4 = go.Figure(
     data=[
-        go.bar(
+        go.Bar(
             name="Confirmed Cases",
             x=topstates_us["Confirmed"],
             y=topstates_us["State"],
