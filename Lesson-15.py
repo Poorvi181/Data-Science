@@ -1,10 +1,10 @@
 import numpy as np
 import pandas as pd
-import matplotlib.pylot as plt
+import matplotlib.pyplot as plt
 import plotly
 import plotly.express as px
 import plotly.graph_objects as go
-from plotly.subplot import make_subplots
+from plotly.subplots import make_subplots
 
 data = pd.read_csv("covid_data.csv")
 
@@ -14,7 +14,7 @@ data = data[
     "Country_Region",
     "Last_Update",
     "Lat",
-    "Long_,"
+    "Long_",
     "Confirmed",
     "Recovered",
     "Deaths",
@@ -27,7 +27,7 @@ data.columns = (
     "Country",
     "Last_Update",
     "Lat",
-    "Long_,"
+    "Long",
     "Confirmed",
     "Recovered",
     "Deaths",
@@ -48,7 +48,7 @@ fig1 = px.scatter(
     y="Confirmed",
     size="Confirmed",
     size_max=120,
-    color="Confirmed"
+    color="Confirmed",
     title="Top 10 Countries By Confirmed Cases",
 )
 fig1.write_html("Fig1.html", auto_open=True)
@@ -113,3 +113,27 @@ fig4 = go.figure(
     ]
 )
 fig4.update_layout(title="Most Affected States in USA", height=600)
+fig4.write_html("Fig4.html", auto_open=True)
+
+fig5 = go.Figure(
+    data=[
+        go.Bar(
+            name="Recovered Cases",
+            x=topstates_brazil["State"],
+            y=topstates_brazil["Recovered"],
+        ),
+        go.Bar(
+            name="Confirmed Cases",
+            x=topstates_brazil["State"],
+            y=topstates_brazil["Confirmed"],
+        ),
+        go.Bar(
+            name="Death Cases",
+            x=topstates_brazil["State"],
+            y=topstates_brazil["Deaths"],
+        ),
+    ]
+)
+fig5.update_layout(title="Most Affected States in Brazil", barmode="stack", height=600)
+fig5.write_html("Fig5.html", auto_open=True)
+
