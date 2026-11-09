@@ -19,7 +19,7 @@ salary_dataset.columns = [
     "race",
     "gender",
     "capital-gain",
-    "capital-loss"
+    "capital-loss",
     "hours-per-week",
     "native-country",
     "income",
@@ -64,18 +64,18 @@ salary_dataset["income"] = (
 )
 salary_dataset.head()
 salary_dataset["gender"] = (
-    salary_dataset["gender"].map({"Male":0, "Female": 1}).astype(int)
+    salary_dataset["gender"].map({" Male":0, " Female": 1}).astype(int)
 )
 
 salary_dataset["race"] = (
     salary_dataset["race"]
     .map(
         {
-            "Black": 0,
-            "Asian-Pac-Islander": 1,
-            "Other": 2,
-            "White": 3,
-            "Amer-Indian-Eskimo": 4,
+            " Black": 0,
+            " Asian-Pac-Islander": 1,
+            " Other": 2,
+            " White": 3,
+            " Amer-Indian-Eskimo": 4,
         }
     )
     .astype(int)
@@ -85,13 +85,13 @@ salary_dataset["marital"]=(
     salary_dataset["marital"]
     .map(
         {
-            "Married-spouse-absent": 0,
-            "Widowed": 1,
-            "Married-civ-spouse": 2,
-            "Seperated": 3,
-            "Divorced": 4,
-            "Never-married": 5,
-            "Married-AF-spouse": 6,
+            " Married-spouse-absent": 0,
+            " Widowed": 1,
+            " Married-civ-spouse": 2,
+            " Seperated": 3,
+            " Divorced": 4,
+            " Never-married": 5,
+            " Married-AF-spouse": 6,
         }
     )
     .astype(int)
@@ -101,12 +101,12 @@ salary_dataset["relationship"] = (
     salary_dataset["relationship"]
     .map(
         {
-            "Not-in-family": 0,
-            "Wife": 1,
-            "Other-relative": 2, 
-            "Unmarried": 3,
-            "Husband": 4,
-            "Own-child": 5,
+            " Not-in-family": 0,
+            " Wife": 1,
+            " Other-relative": 2, 
+            " Unmarried": 3,
+            " Husband": 4,
+            " Own-child": 5,
         }
     )
     .astype(int)
